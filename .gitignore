@@ -1,0 +1,8 @@
+# dddlx2019 presentation .gitignore file
+
+# Ignore history folder.
+# It's a fork from https://github.com/WEBSOLUTIONSHR/drupal
+/history
+
+# Ignore phpstorm IDE folder
+.idea

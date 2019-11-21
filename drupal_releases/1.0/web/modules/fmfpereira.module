@@ -1,0 +1,41 @@
+<?
+
+$module = array("help" => "fmfpereira_help",
+                "admin" => "fmfpereira_admin",
+                "user" => "fmfpereira_user");
+
+// Add text on the admin page
+function fmfpereira_help() {
+  ?>
+  <P><B>FMFPEREIRA HELO</B>: show how to implement the help hook.</P>
+  <?
+}
+
+// Display text on the admin page
+function fmfpereira_display() {
+  print "<P><B>FMFPEREIRA</B>: custom module to show how hooks were implemented in Drupal 1.0</P>";
+}
+
+// Admin router
+function fmfpereira_admin() {
+  global $op;
+
+  print "<SMALL><A HREF=\"admin.php?mod=fmfpereira&op=help\">help</A></SMALL><HR>\n";
+
+  switch ($op) {
+    case "help":
+      fmfpereira_help();
+      break;
+    default:
+      fmfpereira_display();
+  }
+}
+
+// Display block on the user page.
+function fmfpereira_user($username, $section, $operation) {
+  if ($section == "user" && $operation == "view") {
+    $block["subject"] = "fmfpereira module user block";
+    $block["content"] = "user hook was implemented on fmfpereira.module and is displaying this block";
+    return $block;
+  }
+}

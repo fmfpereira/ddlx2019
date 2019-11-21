@@ -1,0 +1,64 @@
+# Docker compose file for basic environment php stack.
+
+# Docker compose version
+version: '3.7'
+
+# Docker compose services.
+services:
+  # Docker web service.
+  web:
+    # Specify the image to start the container from.
+    image: nouphet/docker-php4
+    # Expose ports.
+    ports:
+      - "80"
+    # Mount host paths or named volumes.
+    volumes:
+      # Host path volume for project docroot.
+      - ./web:/var/www/html
+      - ./conf/php.ini:/etc/php.ini
+    # Set the service default networks.
+    networks:
+      - default
+      - traefik
+    # Set the service default labels.
+    labels:
+      - "traefik.docker.network=traefik"
+      - "traefik.frontend.rule=HostRegexp:drupal-2.fmfpereira.docker.localhost,{subdomain:[a-z]+}.drupal-2.fmfpereira.docker.localhost,drupal-2.darc.fmfpereira.int"
+      - "traefik.enable=true"
+      - "traefik.port=80"
+    # Container name
+    container_name: dlamp-web-drupal-2
+
+  # Docker db service.
+  db:
+    # Specify the image to start the container from.
+    image: mysql:5.5
+    # Mount host paths or named volumes.
+    volumes:
+      # Named volume for mysql data.
+      - mysql_data:/var/lib/mysql
+    # Add environment variables.
+    # mysql environment variables.
+    # Check https://hub.docker.com/_/mysql/ for more information.
+    environment:
+      - MYSQL_ROOT_PASSWORD=db
+      - MYSQL_DATABASE=db
+      - MYSQL_USER=db
+      - MYSQL_PASSWORD=db
+    # Container name
+    container_name: dlamp-db-drupal-2
+
+# Named volumes
+volumes:
+  mysql_data:
+    name: dlamp-db-drupal-2
+    driver: "local"
+
+# Networks
+networks:
+  default:
+    name: dlamp-drupal-2
+  traefik:
+    external:
+      name: traefik

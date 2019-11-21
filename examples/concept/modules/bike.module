@@ -1,0 +1,19 @@
+<?php
+
+$module = [
+  "engine" => "bike_engine",
+  "fuel" => "bike_fuel",
+  "wheels" => "bike_wheels"
+];
+
+function bike_engine($message) {
+  echo sprintf("Bike engine: %s<br/ >", $message);
+}
+
+function bike_fuel($message) {
+  echo sprintf("Bike fuel: %s<br/ >", $message);
+}
+
+function bike_wheels($message) {
+  echo sprintf("Bike wheels: %s<br/ >", $message);
+}

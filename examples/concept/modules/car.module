@@ -1,0 +1,24 @@
+<?php
+
+$module = [
+  "engine" => "car_engine",
+  "fuel" => "car_fuel",
+  "wheels" => "car_wheels",
+  "doors" => "car_doors",
+];
+
+function car_engine($message) {
+  echo sprintf("Car engine: %s<br/ >", $message);
+}
+
+function car_fuel($message) {
+  echo sprintf("Car fuel: %s<br/ >", $message);
+}
+
+function car_wheels($message) {
+  echo sprintf("Car wheels: %s<br/ >", $message);
+}
+
+function car_doors($message) {
+  echo sprintf("Car doors: %s<br/ >", $message);
+}

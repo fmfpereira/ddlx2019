@@ -1,0 +1,5 @@
+name: 'Modernize hooks'
+type: module
+description: 'DDLX2019 Modernize hooks session example module.'
+core: 8.x
+package: 'DDLX2019'
